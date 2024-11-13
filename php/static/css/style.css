@@ -1,0 +1,541 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Navbar Styles */
+.navbar {
+    width: 100%;
+    background-color: #333;
+    padding: 14px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar button, .navbar a {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.navbar button:hover, .navbar a:hover {
+    background-color: #3e8e41;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.sidebar-section h3 {
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Deck List */
+.deck-list {
+    list-style: none;
+    padding: 0;
+}
+
+.deck-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.deck-list a:hover {
+    color: #007BFF;
+}
+
+/* Card Styles */
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.card {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    min-height: 400px;
+}
+
+/* Flip Functionality */
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.card.flip .card-front {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.card.flip .card-back {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Question Form Styles */
+.card-content {
+    width: 100%;
+    max-width: 600px;
+    text-align: left;
+}
+
+.card-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-content label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+
+.answer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.answer input[type="text"] {
+    margin-right: 10px;
+    width: 70%;
+}
+
+.btn-add-answer {
+    margin-top: 10px;
+    background: none;
+    border: none;
+    color: #4CAF50;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.btn-add-answer i {
+    margin-right: 5px;
+}
+
+/* Button Styles */
+button, input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.save-button {
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+/* Flash Message */
+.flash-message {
+    display: none;
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.tooltip:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.875em;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
+/* Form Title */
+.form-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+}
+
+/* Styled Form */
+.styled-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 8px;
+    vertical-align: top;
+}
+
+table td:first-child {
+    text-align: right;
+    padding-right: 15px;
+    font-weight: bold;
+}
+
+label i {
+    color: #5a5a5a;
+    margin-right: 5px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Table Alignment for Form */
+.form-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.form-table td:first-child {
+    text-align: right;
+    font-weight: bold;
+    vertical-align: top;
+    padding-right: 10px;
+    color: #333;
+}
+
+.time-limit input[type="number"] {
+    width: 45%; /* Make time inputs proportional */
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.time-separator {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+/* Multi-select for collections */
+.select2-container {
+    width: 100% !important;
+}
+
+.styled-form select.multi-select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.tooltip {
+    position: relative;
+    cursor: pointer;
+    color: #007bff;
+}
+
+/* Form Grid Layout for Two-Column Design */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+}
+
+.time-inputs input[type="number"] {
+    width: 45%;
+    margin-right: 5px;
+}
+
+.time-separator {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Adjust Select2 Multi-Select */
+.select2-container {
+    width: 100% !important;
+}
+
+button, .btn {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.button-container {
+    grid-column: span 2; /* Makes buttons span both columns */
+    text-align: center;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* General styling for the sidebar */
+.sidebar {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 15px;
+}
+
+.button-section {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#create-deck-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#create-deck-button i {
+    margin-right: 5px;
+}
+
+.sidebar-section h3 {
+    font-size: 16px;
+    color: #444;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.collapsible-section {
+    display: block;
+}
+
+.toggle-icon {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+/* List styling for decks and collections */
+.deck-list, .collection-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.deck-item, .collection-item {
+    margin-bottom: 8px;
+}
+
+.deck-link, .collection-title {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    color: #5A5A5A;
+}
+
+.deck-link i, .collection-title i {
+    margin-right: 8px;
+    color: #6C757D;
+}
+
+.deck-link:hover, .collection-title:hover {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.active-deck {
+    background-color: #e0e0e0; /* Example color for the active deck */
+    font-weight: bold;
+}

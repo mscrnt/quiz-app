@@ -1,8 +1,10 @@
 <?php
-# path: php/question_details.php
+// path: php/templates/question_details.php
 
-include 'db.php';
+include_once __DIR__ . '/../includes/db_functions.php';
+include_once __DIR__ . '/../includes/deck_functions.php';
 
+session_start();
 $question_id = $_GET['question_id'] ?? 0;
 $deck_id = $_GET['deck_id'] ?? 0;
 
@@ -11,10 +13,8 @@ if (!$question_id || !$deck_id) {
     exit;
 }
 
-// Query for question details
-$question_result = $conn->query("SELECT * FROM quiz_questions WHERE id = $question_id");
-$question = $question_result->fetch_assoc();
-
+// Fetch question details
+$question = getQuestionById($question_id);
 if (!$question) {
     echo "<p>Question not found.</p>";
     exit;
@@ -22,13 +22,13 @@ if (!$question) {
 
 echo "<h2>" . htmlspecialchars($question['question']) . "</h2>";
 
-// Display answer options if multiple-choice
-if ($question['question_type'] == 'multiple_choice') {
-    $answers_result = $conn->query("SELECT * FROM quiz_answers WHERE question_id = $question_id");
+// Display answer options if it's multiple-choice
+if ($question['question_type'] === 'multiple_choice') {
+    $answers = getAnswersByQuestionId($question_id);
     
-    if ($answers_result && $answers_result->num_rows > 0) {
+    if (!empty($answers)) {
         echo "<ul>";
-        while ($answer = $answers_result->fetch_assoc()) {
+        foreach ($answers as $answer) {
             $answer_text = htmlspecialchars($answer['answer']);
             $is_correct = $answer['is_correct'] ? " (Correct)" : "";
             echo "<li>{$answer_text}{$is_correct}</li>";
@@ -41,5 +41,7 @@ if ($question['question_type'] == 'multiple_choice') {
     echo "<p>Open-ended question. No answer options available.</p>";
 }
 
-// Change the button to call loadEditQuestionForm function
+// Edit and delete buttons
 echo "<button onclick=\"loadEditQuestionForm({$deck_id}, {$question_id})\">Edit Question</button>";
+echo "<button onclick=\"deleteQuestion({$question_id})\">Delete Question</button>";
+?>

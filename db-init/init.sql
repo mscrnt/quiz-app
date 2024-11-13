@@ -1,9 +1,16 @@
 -- db-init/init.sql
 
+-- Configurations Table for storing site setup mode
+CREATE TABLE IF NOT EXISTS configurations (
+    id INT PRIMARY KEY DEFAULT 1,
+    mode ENUM('single_user', 'multi_user') DEFAULT NULL
+);
+
 -- Users Table
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) DEFAULT NULL, -- Password field for multi-user
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
