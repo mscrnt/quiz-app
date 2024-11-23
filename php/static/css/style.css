@@ -1,3 +1,5 @@
+/* path: static/css/style.css */
+
 /* Global Styles */
 body {
     font-family: Arial, sans-serif;
@@ -154,7 +156,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    left: 0;
+    top: 0;
     box-sizing: border-box;
 }
 
@@ -263,7 +266,7 @@ button:hover, input[type="submit"]:hover {
     font-weight: bold;
     margin-bottom: 10px;
     position: absolute;
-    top: 10px;
+    bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -418,6 +421,8 @@ label i {
 .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .time-inputs {
@@ -538,4 +543,9 @@ button, .btn {
 .active-deck {
     background-color: #e0e0e0; /* Example color for the active deck */
     font-weight: bold;
+}
+
+h1 {
+    top: 0;
+    position: absolute;
 }
